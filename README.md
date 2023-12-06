@@ -17,7 +17,7 @@ We present CLIPInverter that enables users to easily perform semantic changes on
 </p>
 
 ## Updates
-**27.07.2023**: Our HuggingFace demo is relased.
+**27.07.2023**: Our HuggingFace demo is released.
 
 **29.08.2023**: CLIPInverter is published in ACM TOG!
 
