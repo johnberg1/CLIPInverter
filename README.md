@@ -1,7 +1,6 @@
 # CLIPInverter: CLIP-Guided StyleGAN Inversion for Text-driven Real Image Editing (ACM TOG 2023)
 
-<a href="https://arxiv.org/abs/2307.08397"><img src="https://img.shields.io/badge/arXiv-2307.08397
--b31b1b.svg"></a> <a href="https://dl.acm.org/doi/10.1145/3610287"><img src="https://img.shields.io/badge/ACM_TOG-CLIPInverter-maroon"></a> <a href="https://cyberiada.github.io/CLIPInverter/"><img src="https://img.shields.io/badge/Project_Page-purple"></a>
+<a href="https://arxiv.org/abs/2307.08397"><img src="https://img.shields.io/badge/arXiv-2307.08397-b31b1b.svg"></a> <a href="https://dl.acm.org/doi/10.1145/3610287"><img src="https://img.shields.io/badge/ACM_TOG-CLIPInverter-maroon"></a> <a href="https://cyberiada.github.io/CLIPInverter/"><img src="https://img.shields.io/badge/Project_Page-purple"></a>
 
 
 Inference Notebook: <a target="_blank" href="https://colab.research.google.com/github/johnberg1/CLIPInverter/blob/main/CLIPInverter_Inference.ipynb">
