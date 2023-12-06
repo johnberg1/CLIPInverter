@@ -23,7 +23,7 @@ def tensor2im(var):
 def run_alignment(image_path):
     import dlib
     from align_faces_parallel import align_face
-    predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
+    predictor = dlib.shape_predictor("pretrained_models/shape_predictor_68_face_landmarks.dat")
     aligned_image = align_face(image_path, predictor=predictor)
     # print("Aligned image has shape: {}".format(aligned_image.size))
     return aligned_image
@@ -77,14 +77,15 @@ def manipulate(input_image_path, caption, encoder, adapter, clip_model):
 def main(args):
     encoder, adapter, clip_model = load_model(args.model_path, args.e4e_path)
     result_image = manipulate(args.input_image_path, args.caption, encoder, adapter, clip_model)
-    result_image.save("result.png")
+    os.makedirs("results", exist_ok=True)
+    result_image.save("results/result.png")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--input_image_path", type=str, required=True)
     parser.add_argument("--caption", type=str, required=True)
-    parser.add_argument("--model_path", type=str, required=True)
-    parser.add_argument("--e4e_path", type=str, required=True)
+    parser.add_argument("--model_path", type=str, default="pretrained_models/pretrained_faces.pt")
+    parser.add_argument("--e4e_path", type=str, default="pretrained_models/e4e_ffhq_encode.pt")
     args = parser.parse_args()
     main(args)
 
