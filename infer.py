@@ -6,6 +6,7 @@ import torchvision.transforms as transforms
 import clip
 import numpy as np
 import sys
+import os
 sys.path.append(".")
 sys.path.append("..")
 from models.e4e_features import pSp
