@@ -65,9 +65,9 @@ class CatsDataset(Dataset):
         self.opts = opts
         self.train = train
         if train:
-            self.text_paths_dir = '/scratch/users/abaykal20/cat_models/afhq_captions_train'
+            self.text_paths_dir = caption_paths['afhq_caption_train']
         else:
-            self.text_paths_dir = '/scratch/users/abaykal20/cat_models/afhq_captions_test'
+            self.text_paths_dir = caption_paths['afhq_caption_test']
         self.text_paths = sorted(data_utils.make_text_dataset(self.text_paths_dir))
         self.rsz_transform = transforms.Compose([
 				transforms.ToTensor(),
@@ -97,9 +97,9 @@ class CatsDataset(Dataset):
         txt_file_dir = self.text_paths[index]
         txt_file = open(txt_file_dir,"r")
         txt = txt_file.read().splitlines()
-        txt = random.choice(txt) # txt[0]
+        txt = random.choice(txt) 
 
-        return from_im, to_im, txt#, orig # orig if using discriminator
+        return from_im, to_im, txt
 
 class LMDBDataset(Dataset):
 	def __init__(self, source_root, resolution, filenames=None, imgfolder=None, textfolder=None, transform = None):
