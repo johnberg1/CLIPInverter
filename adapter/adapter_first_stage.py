@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 from adapter import clipadapter
-from models.stylegan2.model_remapper import Generator
+from models.stylegan2.model import Generator
 
 
 def get_keys(d, name):
@@ -11,10 +11,10 @@ def get_keys(d, name):
 	return d_filt
 
 
-class CLIPAdapterWithDecoder(nn.Module):
+class CLIPAdapterStyleGAN(nn.Module):
 
 	def __init__(self, opts):
-		super(CLIPAdapterWithDecoder, self).__init__()
+		super(CLIPAdapterStyleGAN, self).__init__()
 		self.opts = opts
 		# Define architecture
 		self.adapter = clipadapter.CLIPAdapter(self.opts)
@@ -29,13 +29,8 @@ class CLIPAdapterWithDecoder(nn.Module):
 		if self.opts.checkpoint_path is not None:
 			print('Loading from checkpoint: {}'.format(self.opts.checkpoint_path))
 			ckpt = torch.load(self.opts.checkpoint_path, map_location='cpu')
-			self.adapter.load_state_dict(get_keys(ckpt, 'adapter'), strict=True)
-			if self.opts.is_training_from_stage_one:
-				print('Initializing decoder with remapper from scratch!')
-				self.decoder.load_state_dict(get_keys(ckpt, 'decoder'), strict=False)
-			else:
-				print('Loading decoder weights from pretrained!')
-				self.decoder.load_state_dict(get_keys(ckpt, 'decoder'), strict=True)
+			self.adapter.load_state_dict(get_keys(ckpt, 'adapter'), strict=False)
+			self.decoder.load_state_dict(get_keys(ckpt, 'decoder'), strict=True)
 		else:
 			print('Loading decoder weights from pretrained!')
 			ckpt = torch.load(self.opts.stylegan_weights)

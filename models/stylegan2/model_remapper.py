@@ -449,7 +449,7 @@ class Generator(nn.Module):
         cond_size = style_dim 
         self.affine_mlps = nn.ModuleList()
         self.lambdas = nn.ParameterList()
-        for i in range(1,9):
+        for i in range(1,self.log_size-1):
             self.lambdas.append(nn.Parameter(torch.tensor(0.05), requires_grad=True))
             self.lambdas.append(nn.Parameter(torch.tensor(0.05), requires_grad=True))
             self.affine_mlps.append(nn.Sequential(nn.Linear(cond_size, cond_size), nn.ReLU(), nn.Linear(cond_size, style_dim), nn.LayerNorm(style_dim), nn.ReLU(), nn.Linear(style_dim, style_dim)))

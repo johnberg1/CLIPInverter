@@ -34,6 +34,7 @@ def load_model(model_path, e4e_path):
     opts = ckpt['opts']
     opts['checkpoint_path'] = model_path
     opts['pretrained_e4e_path'] = e4e_path
+    opts['is_training_from_stage_one'] = False
     opts['device'] = 'cuda' if torch.cuda.is_available() else 'cpu'
     opts = Namespace(**opts)
     encoder = pSp(opts)
